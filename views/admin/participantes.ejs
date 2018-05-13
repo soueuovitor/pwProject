@@ -1,0 +1,254 @@
+<% include partials/header %>
+
+
+
+
+
+
+    <div id="page-wrapper">
+
+
+        <div id="scroll-content">
+
+
+
+            <section id="header-main" class="row">
+                <div class="col-md-12">
+
+
+                    <!-- DONUT CHART -->
+                    <div class="box box-sucess" style="height: auto; padding-bottom:10px">
+                        <div class="box-header">
+                            <h1 class="page-header" style="padding-bottom: 0px; margin: auto">Participantes
+                                <small>Participantes Registados</small>
+
+
+
+                            </h1>
+
+                        </div>
+
+                    </div>
+                    <select id="choose" class="chooseStyle" style="float:right;">
+                        <option value="partCardView" selected>Cartão</option>
+                        <option value="partListView">Lista</option>
+
+                    </select>
+
+
+                </div>
+
+
+            </section>
+
+
+
+
+
+
+
+
+
+            <script>
+                function alterSpeaker(col) {
+
+                    window.location = col;
+
+
+                }
+
+                function switchDiv() {
+
+                    $('#choose').change(function () {
+                        var chosen = $('#choose').val();
+                        if (chosen === 'partListView') {
+                            $('#partCardView').slideUp();
+                            $('#partListView').slideDown();
+                        } else {
+
+                            $('#partListView').slideUp();
+                            $('#partCardView').slideDown();
+                        }
+                    })
+
+                }
+
+
+
+                window.onload = switchDiv;
+            </script>
+
+
+
+            <div id="partCardView" class="row">
+
+                <% for (var d of dias) { %>
+                    <div class="row">
+                        <h1 class="page-header" style="padding-bottom: 0px; margin: auto">
+                            <small>
+                                Dia
+                                <%= d.data.toLocaleDateString() %>
+                            </small>
+
+
+
+                        </h1>
+
+
+                        <%for (var p of bilhetesUsers) { %>
+                            <% for (var s of participantes ) { %>
+                                <% if (p.lenght  != 0) { %>
+                                    <% if (p.username_array == s.username_part && p.data_bilhetes == d.data.toLocaleDateString() ) { %>
+
+                                        <aside class="profile-card">
+                                            <header>
+                                                <div id="colabCardVol">
+                                                    <!-- here’s the avatar -->
+                                                    <a>
+                                                        <img src="public/img/colab/aborador.png" onerror="if (this.src != 'public/img/colab/generic.png') this.src = 'public/img/colab/generic.png';"
+                                                            style="width:120px; height: 120px;" class="imagempago">
+
+                                                    </a>
+                                                </div>
+                                                <!-- the username -->
+                                                <div class="main-info">
+                                                    <h1 class="profile-letters">
+
+                                                        <%= s.nome_participante %>
+                                                    </h1>
+
+                                                    <!-- and role or location -->
+                                                    <h2>
+
+                                                    </h2>
+                                                </div>
+
+                                            </header>
+                                            <div id="bio-participantes">
+
+                                                <div class="profile-bio">
+                                                    <p>
+                                                        <i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
+                                                        <%= s.email_part %>
+                                                    </p>
+                                                    <p>
+                                                        <i class="fa fa-mobile fa-lg" aria-hidden="true"></i>
+                                                        <%= s.tel_participante %>
+                                                    </p>
+
+                                                    <p id="funcao_colaborador">
+                                                        <i class="fa fa-briefcase fa-lg" aria-hidden="true"></i>
+                                                        <%= p.numero %>
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <% } %>
+                                            <% } %>
+                                                <% } %>
+                                                    <% } %>
+                    </div>
+                    <% } %>
+
+            </div>
+
+
+            <div id="partListView" style="display:none">
+
+                <% for (var d of dias) { %>
+
+                    <div class="row">
+                        <h1 class="page-header" style="padding-bottom: 0px; margin: auto">
+                            <small>
+                                Dia
+                                <%= d.data.toLocaleDateString() %>
+                            </small>
+
+
+
+                        </h1>
+
+
+
+
+                        <div class="col-md-12">
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="listausername">Username</th>
+                                        <th class="listanome">Nome</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%for (var p of bilhetesUsers) { %>
+                                        <% for (var s of participantes ) { %>
+
+                                            <% if (p.username_array == s.username_part && p.data_bilhetes == d.data.toLocaleDateString() ) { %>
+                                                <tr>
+                                                    <td class="listausername">
+                                                        <%= s.username_part %>
+                                                    </td>
+                                                    <td class="listanome">
+                                                        <%= s.nome_participante %>
+                                                    </td>
+                                                    <td>
+                                                        <%= s.email_part %>
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+                                                    <% } %>
+                                                        <% } %>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+    </div>
+    <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+
+
+
+
+    </div>
+    </div>
+    </div>
+
+
+    <% include partials/footer %>

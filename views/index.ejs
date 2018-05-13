@@ -1,0 +1,516 @@
+<% include partials/header %>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+
+
+        <div class="container">
+
+            <% if (isAuthenticated) { %>
+
+                <a class="navbar-brand js-scroll-trigger" href="" role="button" data-toggle="modal" data-target="#comprar-bilhete-modal">Compre Já o Seu Bilhete!</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <% } else { %>
+
+                    <a class="navbar-brand js-scroll-trigger" href="" role="button" data-toggle="modal" data-target="#login-modal">Compre Já o Seu Bilhete!</a>
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        Menu
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+
+                    <% } %>
+
+
+                        <div class="collapse navbar-collapse" id="navbarResponsive">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link js-scroll-trigger" href="#services">Oferta</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link js-scroll-trigger" href="#portfolio">Workshops</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link js-scroll-trigger" href="#about">Speakers</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link js-scroll-trigger" href="#team">Equipa</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link js-scroll-trigger" href="#contact">Contacto</a>
+                                </li>
+
+                                <% if (isAuthenticated) { %>
+
+                                    <% if (user.type === 'admin') {%>
+                                        <li class="nav-item">
+                                            <a href="#" onclick="management()" class="nav-link js-scroll-trigger" role="button">Gestão</a>
+                                        </li>
+                                        <% } %>
+
+                                            <% if (isAuthenticated) { %>
+                                                <li class="nav-item">
+                                                    <a href="#" class="nav-link js-scroll-trigger" role="button" data-toggle="modal" data-target="#settings-modal">
+                                                        <button class="icon-button">
+                                                            <span class="fa fa-cogs" aria-hidden="true"> </span>
+                                                        </button>
+                                                    </a>
+                                                </li>
+
+                                                <% } %>
+
+                                                    <% } %>
+                                                        <% if (isAuthenticated) { %>
+                                                            <li class="nav-item">
+                                                                <a href="#" onclick="logout()" class="nav-link js-scroll-trigger" role="button">
+                                                                    <span class="fa fa-sign-out" aria-hidden="true"> </span>
+                                                                </a>
+                                                            </li>
+                                                            <% } else { %>
+                                                                <li class="nav-item">
+                                                                    <a href="#" class="nav-link js-scroll-trigger" role="button" data-toggle="modal" data-target="#login-modal">Login</a>
+                                                                </li>
+                                                                <% } %>
+
+                            </ul>
+
+                        </div>
+        </div>
+
+    </nav>
+
+
+    <!-- Header -->
+    <header class="masthead">
+        <div class="container">
+            <div class="intro-text">
+                <% if (isAuthenticated) { %>
+                    <div class="intro-lead-in">Bem vindo de volta
+                        <%= user.name %>
+                    </div>
+
+
+                    <% } else { %>
+
+                        <div class="intro-lead-in">Em cada foto, um momento</div>
+                        <% } %>
+
+                            <div class="intro-heading">Norte Photography</div>
+                            <a id="botao-intro" class="btn btn-xl js-scroll-trigger" href="#services">Oferta Educacional</a>
+            </div>
+        </div>
+    </header>
+
+
+
+    <a href="#" class="back-to-top" style="display: inline;">
+
+        <a href="#0" class="scrollToTop">
+            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+        </a>
+
+    </a>
+
+
+    <!-- Services -->
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading" style="color:black;">Workshops Para Todos Os Gostos</h2>
+                    <h3 class="section-subheading text-muted">Venha Aprender!</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+
+                        <i class="fa fa-camera-retro"></i>
+                    </span>
+                    <h4 class="service-heading">Principiante</h4>
+                    <p class="text-muted">Se ainda não sabe pegar numa DSLR não se sinta mal! Também pensamos em si, temos sessões com baixo nível
+                        de dificuldade.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-camera-retro"></i>
+                    </span>
+                    <h4 class="service-heading">Intermédio</h4>
+                    <p class="text-muted">Temos sessões mais técnicas para aqueles que gostam de um desafio.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-camera-retro"></i>
+                    </span>
+                    <h4 class="service-heading">Especializado</h4>
+                    <p class="text-muted">Sessões especializadas em vários tipos de fotografia, para aprofundar conhecimento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <%- include('./partials/login'); %>
+
+
+
+
+
+
+
+        <%- include('./partials/comprar-bilhete'); %>
+
+
+
+            <!-- Portfolio Grid -->
+            <section class="bg-light" id="portfolio">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <h2 class="section-heading" style=" text-shadow: 0 0 30px black;">Categorias</h2>
+                            <h3 class="section-subheading" style=" color:white; text-shadow: 0 0 30px black;">Fotografia para todos os gostos</h3>
+                        </div>
+                    </div>
+                    <div id="dias_categoria"class="row">
+                        <div  class="col-sm-12" style=" text-align: center;">
+                            <% for (var d of dias) { %>
+                                <% var i = 0 %>
+                                 <% for (var p of arraySessoes) { %>
+
+                                        <% if ( p.data_sessao.toLocaleDateString() == d.data.toLocaleDateString()) { %>
+                                            <% i++ %>
+
+                                                <% } %>
+                                                    <% } %>
+                                                        <%  if (i != 0 ) { %>
+                                <h3>
+                                    <%= d.data.toLocaleDateString()%>
+                                </h3>
+                        </div>
+
+                        <% for (var p of arraySessoes) { %>
+
+                            <% if ( p.data_sessao.toLocaleDateString() == d.data.toLocaleDateString() ) { %>
+
+                                <div class="col-md-4 col-sm-6 portfolio-item" style="margin-left: auto; margin-right: auto;">
+                                    <a class="portfolio-link" data-toggle="modal" href="#<%= p.titulo_sessao %>">
+                                        <div class="portfolio-hover">
+                                            <div class="portfolio-hover-content">
+                                                <i class="fa fa-plus fa-3x"></i>
+                                            </div>
+                                        </div>
+                                        <img class="img-fluid" style="width:400px; height: 300px;" src="public/img/portfolio/<%= p.caminho %>-sm.png" alt="">
+                                    </a>
+                                    <div class="portfolio-caption">
+                                        <h4>
+                                            <%= p.titulo_sessao %>
+                                        </h4>
+                                        <p class="text-muted">
+                                            <%= p.desc_titulo %>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <% } %>
+                                    <% } %>
+                                        <div class="col-sm-12" style=" text-align: center;">
+                                            <% } %>
+                                                     <% } %>
+                                            
+                                        </div>
+                    </div>
+                </div>
+            </section>
+            <%- include('./partials/settings'); %>
+
+                <!-- About -->
+         
+                <section id="about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <h2 class="section-heading" style="color:black;">Speakers</h2>
+                                <h3 class="section-subheading text-muted">Oradores no Norte Photography</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ul class="timeline">
+                                    <% var e = 1 %>
+                                        <% for (var u of arraySpeakers ) { %>
+
+                                            <% if (u.deleted == 0 ) { %>
+                                                <% if ( (e%2) ){ %>
+                                                    <li class="timeline-inverted">
+                                                        <div class="timeline-image">
+                                                            <img class="rounded-circle img-fluid" style="height: 100%; width: 100%" src="public/img/speakers/<%= u.email_speaker %>.png"
+                                                                alt="">
+                                                        </div>
+                                                        <div class="timeline-panel">
+                                                            <div class="timeline-heading">
+
+                                                                <h4 class="subheading">
+                                                                    <%= u.nome_speaker %>
+                                                                </h4>
+                                                            </div>
+                                                            <div class="timeline-body">
+                                                                <p class="text-muted">
+                                                                    <%= u.introducao %>
+                                                                </p>
+
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <% e++ %>
+                                                        <% }else{ %>
+                                                            <li>
+                                                                <div class="timeline-image">
+                                                                    <img class="rounded-circle img-fluid" style="height: 100%; width: 100%" src="public/img/speakers/<%= u.email_speaker %>.png"
+                                                                        alt="">
+                                                                </div>
+                                                                <div class="timeline-panel">
+                                                                    <div class="timeline-heading">
+
+                                                                        <h4 class="subheading">
+                                                                            <%= u.nome_speaker %>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="timeline-body">
+                                                                        <p class="text-muted">
+                                                                            <%= u.introducao %>
+                                                                        </p>
+
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <% e++ %>
+                                                                <% } %>
+                                                                    <% } %>
+
+                                                                        <% } %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Team -->
+                <section class="bg-light" id="team">
+                    <div class="container">
+                        <div class="row text">
+                            <div class="col-lg-12 text-center">
+                                <h2 class="section-heading" style=" text-shadow: 0 0 30px black;">Organização</h2>
+                                <h3 style="color:white;"class="section-subheading" style=" color:white; text-shadow: 0 0 30px black;">Quem tornou este projeto numa realidade </h3>
+                            </div>
+                        </div>
+                        <div id="equipa_texto"class="row text-center">
+                            <div class="col-sm-7">
+                                <div class="team-member" style=" color:white; text-shadow: 0 0 30px black;">
+                                    <img class="mx-auto rounded-circle" src="public/img/team/dank.jpg" alt="">
+                                    <h4>Gonçalo Dias</h4>
+                                    <p >
+                                        Fotógrafo e WebDeveloper</p>
+                                    <ul class="list-inline social-buttons">
+
+                                        <li class="list-inline-item">
+                                            <a href="https://www.facebook.com/GoncaloDias.GD">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="team-member" style=" color:white; text-shadow: 0 0 30px black;">
+                                    <img class="mx-auto rounded-circle" src="public/img/team/dank2.jpg" alt="">
+                                    <h4>Vitor Alves</h4>
+                                    <p > Empreendedor e WebDeveloper</p>
+                                    <ul class="list-inline social-buttons">
+                                        <li class="list-inline-item">
+                                            <a href="https://www.facebook.com/profile.php?id=100008322244005">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+                </section>
+
+                <!-- Clients -->
+
+                <section id="patrocinios">
+                    <div class="container">
+                        <div clas="row">
+
+                            <div class="col-lg-12 text-center">
+                                <h2 class="section-heading" style="color:black;>Patrocínios</h2>
+                                <h3 class="section-subheading text-muted">Quem tornou possível este projeto</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <% for (var u of arrayPatrocinadores ) { %>
+                                <% if (u.deleted == 0 ) { %>
+
+                                    <div class="col-md-3 col-sm-6 " style="margin: auto">
+                                        <a href="#">
+                                            <img class="img-fluid d-block mx-auto" src="public/img/logos/<%= u.nome_patrocinador %>.png" alt="<%= u.nome_patrocinador %>">
+                                        </a>
+                                    </div>
+                                    <%  } %>
+                                        <%  } %>
+
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact -->
+                <section id="contact">
+                    <div class="container-fluid">
+                        <div class="row border-between">
+                            <div class="col-sm-6 text-center">
+                                <h2 class="section-heading">Contacte-nos</h2>
+                                <h3 class="section-subheading text-muted">Estamos aqui para esclarecer qualquer dúvida</h3>
+
+
+
+                                <form id="contactForm" name="sentMessage" novalidate>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <input class="form-control" id="name" type="text" name="nome" placeholder="Nome Completo" required data-validation-required-message="Nome Completo">
+                                                <p class="help-block text-danger"></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" id="email" name="email" type="email" placeholder="Endereço E-Mail" required data-validation-required-message="Por favor introduza o seu Endereço E-Mail">
+                                                <p class="help-block text-danger"></p>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <textarea class="form-control" id="message" name="mensagem" placeholder="Escreva uma mensagem" required data-validation-required-message="Escreva uma mensagem"></textarea>
+                                                <p class="help-block text-danger"></p>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-sm-12 text-center">
+                                            <div id="success"></div>
+                                            <button id="sendMessageButton" class="btn btn-xl" type="submit">Enviar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="col-sm-6 text-center">
+                                <h2 class="section-heading">Onde estamos</h2>
+                                <h3 class="section-subheading text-muted">Não perca esta oportunidade!</h3>
+
+                                <div id="map"></div>
+
+                            </div>
+                        </div>
+
+                </section>
+                <!-- goooooooooooooooooooooooooogle -->
+
+
+
+                <!-- /goooooooooooooooooooooooooooogle -->
+                <!-- Footer -->
+                <footer>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="copyright">Copyright &copy; Gonvitor 2017</span>
+                            </div>
+                            <div class="col-md-4">
+                         
+                            </div>
+                            <div class="col-md-4">
+                                <ul class="list-inline quicklinks">
+                                    <li class="list-inline-item">
+                                        <a href="" onclick="maps()">Privacy Policy</a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="">Terms of Use</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+                <!-- Portfolio Modals -->
+
+                <!-- Modal 1 -->
+                <% for (var e of arraySessoes) { %>
+                    <div class="portfolio-modal modal fade" id="<%= e.titulo_sessao %>" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="close-modal" data-dismiss="modal">
+                                    <div class="lr">
+                                        <div class="rl"></div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-8 mx-auto">
+                                            <div class="modal-body">
+                                                <!-- Project Details Go Here -->
+                                                <h2 class="titulo_portfolio">
+                                                    <%= e.titulo_sessao %>
+                                                </h2>
+                                                <p class="item-intro text-muted">
+                                                    <%= e.desc_titulo %>
+                                                </p>
+                                                <img class="img-fluid d-block mx-auto" src="public/img/portfolio/<%= e.caminho %>-full.png" alt="">
+                                                <p>
+                                                    <%= e.descricao_sessao %>
+                                                </p>
+                                                <ul class="list-inline">
+                                                    <li>Data:
+                                                        <%= e.data_sessao.toLocaleDateString() %>
+                                                    </li>
+                                                    <li>Hora:
+                                                        <%= e.hora_inicio %>
+                                                    </li>
+                                                    <li>Speaker:
+                                                        <%= e.speaker_sessao %>
+                                                    </li>
+                                                    <li>Categoria:
+                                                        <%= e.categoria %>
+                                                    </li>
+                                                </ul>
+                                                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                                    <i class="fa fa-times"></i>
+                                                    Close Project</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+
+                        <script>
+
+                            
+
+                        </script>
+                        <% include partials/footer %>

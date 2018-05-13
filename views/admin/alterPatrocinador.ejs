@@ -1,0 +1,161 @@
+<body>
+
+    <% include partials/header %>
+
+
+
+        <div id="page-wrapper">
+
+
+
+            <section id="header-main" class="row">
+                <div class="col-md-12">
+
+
+                    <!-- DONUT CHART -->
+                    <div class="box box-sucess" style="height: auto; padding-bottom:10px">
+                        <div class="box-header">
+                            <h1 class="page-header" style="padding-bottom: 0px; margin: auto">Alterar Informação de
+                                <i>
+                                    <%= patrocinador.nome_patrocinador %>
+                                </i>
+                            </h1>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+            </section>
+
+
+
+
+
+            <section class="content container-fluid">
+
+
+                <div id="divContent" class="row">
+
+
+
+
+                    <!-- edit form column -->
+                    <div class="col-md-9 personal-info" id="patrs-div">
+
+                        <div class="header-alter">
+
+                            <h3 style="display:inline-block; padding-right: 450px">Informação Pessoal</h3>
+
+
+                        </div>
+
+
+                        <form id="alter-Patrocinador" class="form-horizontal" role="form">
+
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Valor: </label>
+                                <div class="col-md-8">
+                                    <input class="form-control" type="number" min="0" name="valor" value="<%=patrocinador.valor_doado %>" required>
+                                    <input class="form-control" type="hidden" name="id_speaker" value="<%= patrocinador.id_patrocinador%> ">
+                                    <input class="form-control" type="hidden" name="name" value="<%=patrocinador.nome_patrocinador%> ">
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label"></label>
+                                <div class="col-md-8">
+                                    <input type="submit" class="btn btn-primary" value="Guardar">
+                                    <span></span>
+                                    <input type="button" class="btn btn-default" value="reset" onclick="javascript:location.reload();" >
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <!-- /#page-wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <% include partials/footer %>

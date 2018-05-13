@@ -1,0 +1,239 @@
+    <% include partials/header %>
+
+
+
+
+
+
+        <div id="page-wrapper">
+
+            <section id="header-main" class="row">
+                <div class="col-md-12">
+
+
+                    <!-- DONUT CHART -->
+                    <div class="box box-sucess" style="height: auto; padding-bottom:10px">
+                        <div class="box-header">
+                            <h1 class="page-header" style="padding-bottom: 0px; margin: auto">Speakers Contratados
+                                <small>Clique num speaker para alterar a sua informação</small>
+                            
+                            </h1>
+                        </div>
+                    </div>
+                    <select id="choose" class="chooseStyle" style="float: right">
+                        <option value="speakersCardView" selected>Cartão</option>
+                        <option value="speakersListView">Lista</option>
+
+                    </select>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <script>
+                function alterSpeaker(col) {
+
+                    window.location = col;
+
+                }
+
+                function deleteSpeaker(col) {
+                    if (confirm('Quer mesmo apagar este Speaker?')) {
+                        window.location = col;
+                    }
+                }
+
+                function switchDiv() {
+
+                    $('#choose').change(function () {
+                        var chosen = $('#choose').val();
+                        if (chosen === 'speakersListView') {
+                            $('#speakersCardView').slideUp();
+                            $('#speakersListView').slideDown();
+                        } else {
+
+                            $('#speakersListView').slideUp();
+                            $('#speakersCardView').slideDown();
+                        }
+                    })
+
+                }
+
+
+
+                window.onload = switchDiv;
+            </script>
+
+
+
+
+    <div id="floating-button"   data-toggle="modal" data-target="#speaker-modal" >
+        <p class="plus">+</p>
+        <img class="edit" src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/bt_compose2_1x.png">
+    </div>
+
+
+
+
+            <div id="speakersCardView" class="row">
+            
+
+               
+                <tbody>
+
+
+                    <% for (var s of arraySpeakers ) { %>
+
+                        <% if (s.deleted == 0)  { %>
+                            <aside class="profile-card">
+                                    <header>
+
+                                        <div id="speakersCard"
+                                        <!-- here’s the avatar -->
+                                        <a>
+                                     <img src="public/img/speakers/<%= s.email_speaker %>.png" onerror="if (this.src != 'public/img/speakers/generic.png') this.src = 'public/img/speakers/generic.png';"   style="width:120px; height: 120px;" class="hoverZoomLink" >
+                                       
+                                        </a>
+                                        </div>
+                                        <!-- the username -->
+                                        <div class="main-info">
+                                            <h1 class="profile-letters">
+                
+                                            <%= s.nome_speaker %>
+                                            </h1>
+        
+                                            <!-- and role or location -->
+                                          <h2>
+                                              
+                                          </h2>
+                                        </div>
+        
+                                    </header>
+        
+                                    <!-- bit of a bio; who are you? -->
+                                    <div class="profile-bio">
+                                  
+                                        <p ><i class="fa fa-home fa-lg" aria-hidden="true"></i>
+                                            <%= s.morada_speaker %>
+                                        </p>
+                                        <p ><i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
+                                         
+                                                <%= s.email_speaker %>
+                                       
+                                        </p>
+                                        <p ><i class="fa fa-mobile fa-lg" aria-hidden="true"></i>
+        
+                                            <%= s.numero_speaker %>
+                                       
+                                        </p>
+                                        <p ><i class="fa fa-money fa-lg" aria-hidden="true"></i>
+        
+                                            <%= s.cache_speaker %>
+                                        </p>
+                                    </div>
+                                    <!-- some social links to show off -->
+                                    <center>
+                                        <div class="buttonsStyle" style="margin-bottom: 5px;">
+        
+        
+        
+                                                <a class="btn btn-box-tool" onclick="alterSpeaker('/alterSpeaker/<%= s.email_speaker %>')">
+                                                    <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+                                                </a>
+        
+                                                <a class="btn btn-box-tool" onclick="deleteSpeaker('/alterSpeaker/<%= s.email_speaker %>/delete')">
+                                                    <i class="fa fa-times fa-lg" aria-hidden="true">
+                                                    </i>
+                                                </a>
+        
+        
+                                        </div>
+                                        
+        
+                                    </center>
+                                </aside>
+        
+        
+                        <% } %>
+                        <% } %>
+
+
+
+                </tbody>
+            </div>
+            <% include partials/loginSpeakers %>
+
+            <div id="speakersListView" class="row" style="display:none">
+                <div class="col-md-12">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Morada</th>
+                            <th>Email</th>
+                            <th>Numero</th>
+                            <th>Cache</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (var u of arraySpeakers) { %>
+                            <% if (u.deleted == 0)  { %>
+                            <tr>
+                                <td>
+                                    <%= u.nome_speaker %>
+                                </td>
+                                <td>
+                                    <%= u.morada_speaker %>
+                                </td>
+                                <td>
+                                    <%= u.numero_speaker %>
+                                </td>
+                                <td>
+                                    <%= u.cache_speaker %>
+                                </td>
+                            </tr>
+                            <%} %>
+                            <%} %>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <!-- /#page-wrapper -->
+
+        <!-- /#wrapper -->
+
+        </div>
+
+
+
+
+
+        <% include partials/footer %>

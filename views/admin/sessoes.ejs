@@ -1,0 +1,220 @@
+<% include partials/header %>
+
+
+    <div id="page-wrapper">
+
+
+
+
+
+        <section id="header-main" class="row">
+            <div class="col-md-12">
+
+
+                <!-- DONUT CHART -->
+                <div class="box box-sucess" style="height: auto; padding-bottom:10px">
+                    <div class="box-header">
+                        <h1 class="page-header" style="padding-bottom: 0px; margin: auto">Sessões
+                            <small></small>
+
+                        </h1>
+
+                    </div>
+                </div>
+
+                <select id="choose" class="chooseStyle" style="float:right;">
+                    <option value="sessionsCardView" selected>Cartão</option>
+                    <option value="sessionsListView">Lista</option>
+
+                </select>
+
+            </div>
+
+
+        </section>
+
+
+        <div id="floating-button"    data-toggle="modal" data-target="#sessao-modal" >
+            <p class="plus">+</p>
+            <img class="edit" src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/bt_compose2_1x.png">
+        </div>
+        
+        
+        
+
+        <div id="sessionsCardView" class="row">
+           
+
+            <!-- /.box -->
+            <tbody>
+
+                <% for (var s of arraySessoes ) { %>
+
+                    
+                    <aside class="profile-card">
+                            <header>
+                                <div id="colabCardVol">
+                                    <!-- here’s the avatar -->
+                                    <a>
+                                        <img src="public/img/portfolio/<%= s.caminho %>-sm.png" onerror="if (this.src != 'public/img/colab/generic.png') this.src = 'public/img/colab/generic.png';"
+                                            style="width:120px; height: 120px;" class="imagempago">
+
+                                    </a>
+                                </div>
+                                <!-- the username -->
+                                <div class="main-info">
+                                    <h1 class="profile-letters">
+                                            <%= s.titulo_sessao %>
+                                    </h1>
+
+                                    <!-- and role or location -->
+                                    <h2>
+
+                                    </h2>
+                                </div>
+
+                            </header>
+
+                            <div class="profile-bio">
+                                <p>
+                                    <i class="fa fa-calendar fa-lg" aria-hidden="true"></i>
+                                    <%= s.data_sessao.toLocaleDateString() %>
+                                </p>
+                                <p>
+                                    <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
+                                    <%= s.hora_inicio %>
+                                </p>
+                                <p>
+                                    <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
+                                    <%= s.duracao %>
+                                </p>
+                                <p>
+                                    <i class="fa fa-microphone  fa-lg" aria-hidden="true"></i>
+                                    <%= s.speaker_sessao %>
+                                </p>
+                                <p >
+                                    <i class="fa  fa-globe  fa-lg" aria-hidden="true"></i>
+                                    <%= s.categoria %>
+                                </p>
+                            </div>
+                            <center>
+                                <div class="buttonsStyle" style="margin-bottom: 5px;">
+
+                                    <a class="btn btn-box-tool" onclick="deleteSessao('/alterSessao/<%= s.titulo_sessao %>/delete')">
+                                        <i class="fa fa-times fa-lg" aria-hidden="true">
+
+                                        </i>
+                                    </a>
+                                </div>
+                            </center>
+                        </aside>
+
+
+
+              
+                    <% } %>
+
+
+
+
+            </tbody>
+        </div>
+        <%- include('./partials/loginSessao'); %>
+
+
+        <div id="sessionsListView" class="row" style="display:none">
+            <div class="col-md-12">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+
+                            <th class="listausername">Nome Sessão</th>
+                            <th>Data</th>
+                            <th>Início</th>
+                            <th>Fim</th>
+                            <th>Speaker</th>
+                            <th>Categoria</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (var u of arraySessoes) { %>
+                            <tr>
+                                <td class="listausername">
+                                    <%= u.titulo_sessao %>
+                                </td>
+
+                                <td>
+                                    <%= u.data_sessao.toLocaleDateString() %>
+                                </td>
+                                <td>
+                                    <%= u.hora_inicio%>
+                                </td>
+                                <td>
+                                    <%= u.duracao %>
+                                </td>
+                                <td>
+                                    <%= u.speaker_sessao %>
+                                </td>
+                                <td>
+                                    <%= u.categoria %>
+                                </td>
+                            </tr>
+                            <%} %>
+                    </tbody>
+                </table>
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <!-- /#page-wrapper -->
+
+
+
+            <script>
+                function alterSessao(col) {
+                    window.location = col;
+                }
+
+                function switchDiv() {
+
+                    $('#choose').change(function () {
+                        var chosen = $('#choose').val();
+                        if (chosen === 'sessionsListView') {
+                            $('#sessionsCardView').slideUp();
+                            $('#sessionsListView').slideDown();
+                        } else {
+
+                            $('#sessionsListView').slideUp();
+                            $('#sessionsCardView').slideDown();
+                        }
+                    })
+
+                }
+
+
+
+                window.onload = switchDiv;
+
+
+
+                function deleteSessao(col) {
+                    if (confirm('Quer mesmo apagar esta sessão?')) {
+                        window.location = col;
+                    }
+                }
+            </script>
+
+
+
+
+
+            <% include partials/footer %>

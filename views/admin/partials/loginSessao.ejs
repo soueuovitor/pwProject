@@ -1,0 +1,111 @@
+<div class="modal fade" id="sessao-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+
+
+            <!-- Begin # DIV Form -->
+            <div id="div-forms">
+
+
+                <!-- Begin | Register Form -->
+                <form id="register-sessao" method="post" enctype="multipart/form-data">
+
+                    <div class="modal-body">
+
+                        <div id="div-registerSessao-msg">
+                            <center>
+                                <span id="text-registerSessao-msg">Criar Sessão</span>
+                            </center>
+                        </div>
+                        <label for="small" class="fileupload">Thumbnail</label>
+                        <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                        <input id=" small" type="file" name="sm">
+                        <label for="full" class="fileupload">Imagem Grande</label>
+                        <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+
+                        <input id="full" type="file" name="full">
+
+                        <input id="titulo" class="form-control" type="text" name="titulo" placeholder="Título Workshop" pattern="[a-zA-ZÀ-ž\s]+" title="Apenas letras" required>
+                        <input id="desc_titulo" class="form-control" type="text" name="desc_titulo" placeholder="Descrição Título"  required>
+                        <input id="texto_intro" class="form-control" type="text" name="texto_intro" placeholder="Texto Intro" required>
+                        <input id="descricao" class="form-control" type="text" name="descricao" placeholder="Descrição" required>
+
+                        <input id="categoria" class="form-control" type="text" name="categoria" placeholder="Categoria" required>
+
+                        <div style="padding-bottom: 20px; padding-top: 0px" style="margin: auto">
+                            <h4>
+                                Escolha Um Speaker
+                            </h4>
+                            <% for (var s of speakers){ %>
+                                <div class="pretty p-default p-curve p-fill">
+                                    <input type="radio" name="speaker" value="<%= s.nome_speaker %>" />
+                                    <div class="state">
+
+                                        <label>
+                                            <%= s.nome_speaker %>
+                                        </label>
+                                    </div>
+                                </div>
+                                <%  } %>
+                        </div>
+                        <div style="padding-bottom: 20px; padding-top: 0px" style="margin: auto">
+                            <h4>
+                                Escolha a Sala
+                            </h4>
+                            <% for (var p of salas){ %>
+                                <div class="pretty p-default p-curve p-fill">
+                                    <input type="radio" name="sala" value="<%= p.cod_sala %>" />
+                                    <div class="state">
+
+                                        <label>
+                                            <%= p.cod_sala %>
+                                        </label>
+                                    </div>
+                                </div>
+                                <%  } %>
+                        </div>
+                        <div style="padding-bottom: 20px; padding-top: 0px" style="margin: auto">
+                            <h4>
+                                Escolha Um Dia
+                            </h4>
+                            <% for (var d of dias){ %>
+                                <div class="pretty p-default p-curve p-fill">
+                                    <input type="radio" name="data" value="<%=  d.data.toLocaleDateString() %>" />
+                                    <div class="state">
+
+                                        <label>
+                                            <%=  d.data.toLocaleDateString()   %>
+                                        </label>
+                                    </div>
+                                </div>
+                                <%  } %>
+                        </div>
+                        <div style="padding-bottom: 20px; padding-top: 0px" style="margin: auto">
+                            <h4>
+                                Escolha a Hora:
+                            </h4>
+                            <div >
+                                <h6 style="width:100px;margin-bottom:0px">Início</h6>
+                                <input style="width:100px; padding-top:0px; padding-bottom:0px;" type="text"  name="timepicker" class="timepicker" />
+                                <h6 style="width:100px;margin-bottom:0px">Fim</h6>
+                                <input style="width:100px; padding-top:0px; padding-bottom:0px;" type="text"  name="timepicker2" class="timepicker" />
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Registar</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Register Form -->
+
+            </div>
+            <!-- End # DIV Form -->
+        </div>
+    </div>
+</div>

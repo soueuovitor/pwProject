@@ -1,0 +1,234 @@
+<% include partials/header %>
+
+
+
+    <div id="page-wrapper">
+
+
+
+
+
+
+
+        <section id="header-main" class="row">
+            <div class="col-md-12">
+
+
+                <!-- DONUT CHART -->
+                <div class="box box-sucess" style="height: auto; padding-bottom:10px">
+                    <div class="box-header">
+                        <h1 class="page-header" style="padding-bottom: 0px; margin: auto">Patrocinadores
+                            <small>Clique num patrocinador para alterar a sua informação</small>
+
+                        </h1>
+
+                    </div>
+                </div>
+
+                <select id="choose" class="chooseStyle" style="float:right;">
+                    <option value="sponsorCardView" selected>Cartão</option>
+                    <option value="sponsorListView">Lista</option>
+
+                </select>
+
+            </div>
+
+
+        </section>
+
+
+
+
+
+        <div id="floating-button" data-toggle="modal" data-target="#patrocinador-modal">
+            <p class="plus">+</p>
+            <img class="edit" src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/bt_compose2_1x.png">
+        </div>
+
+
+
+
+        <div id="sponsorCardView" class="row">
+
+
+
+            <!-- /.box -->
+            <tbody>
+
+                <% for (var p of arrayPatrocinadores ) { %>
+                    <% if ( p.deleted == 0) { %>
+
+
+
+                
+                            <aside class="profile-card">
+                                <header>
+
+
+                                    <div id="patrocinadorCard">
+                            
+                                    <a>
+                                        <img src="public/img/logos/<%= p.nome_patrocinador %>.png" alt="<%= p.nome_patrocinador %>" class="hoverZoomLink">
+                                    </a>
+                                    </div>
+                                    <!-- the username -->
+                                    <div class="main-info">
+                                        <h1 class="profile-letters">
+                                            <%= p.nome_patrocinador %>
+                                        </h1>
+
+                                        <!-- and role or location -->
+                                        <h2 class="profile-letters">
+
+                                            <%= p.valor_doado %> €
+                                        </h2>
+                                    </div>
+
+                                </header>
+
+                                <!-- bit of a bio; who are you? -->
+
+
+                                <!-- some social links to show off -->
+                                <center>
+                                    <div class="buttonsStyle" style="margin-bottom: 5px;">
+
+
+
+
+                                        <a class="btn btn-box-tool" onclick="alterPatrocinador('/alterPatrocinador/<%= p.nome_patrocinador %>')">
+                                            <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+
+                                        </a>
+
+
+
+
+
+                                        <a class="btn btn-box-tool" onclick="deletePatrocinador('/alterPatrocinador/<%= p.nome_patrocinador %>/delete')">
+                                            <i class="fa fa-times fa-lg" aria-hidden="true"></i>
+                                        </a>
+
+
+                                    </div>
+
+                                </center>
+                            </aside>
+
+                  
+
+
+
+
+
+
+
+
+
+                        <% } %>
+                            <% } %>
+
+
+
+
+            </tbody>
+        </div>
+
+
+
+
+        <%- include('./partials/loginPatrocinadores'); %>
+
+
+
+
+
+            <div id="sponsorListView" class="row" style="display: none">
+                <div class="col-md-12">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                                <th class="listausername">Nome</th>
+                                <th>Valor Doado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (var u of arrayPatrocinadores) { %>
+                                <% if ( u.deleted == 0) { %>
+
+                                    <tr>
+                                        <td class="listausername">
+                                            <%= u.nome_patrocinador %>
+                                        </td>
+
+                                        <td>
+                                            <%= u.valor_doado %>
+                                        </td>
+                                    </tr>
+                                    <%} %>
+                                        <%} %>
+                        </tbody>
+                    </table>
+
+
+
+
+                </div>
+            </div>
+
+            <!-- /#page-wrapper -->
+
+
+
+            <script>
+         
+
+
+
+
+
+
+
+
+
+
+                function alterPatrocinador(col) {
+                    window.location = col;
+                }
+
+                function switchDiv() {
+
+                    $('#choose').change(function () {
+                        var chosen = $('#choose').val();
+                        if (chosen === 'sponsorListView') {
+                            $('#sponsorCardView').slideUp();
+                            $('#sponsorListView').slideDown();
+                        } else {
+
+                            $('#sponsorListView').slideUp();
+                            $('#sponsorCardView').slideDown();
+                        }
+                    })
+
+                }
+
+
+
+                window.onload = switchDiv;
+
+
+
+                function deletePatrocinador(col) {
+                    if (confirm('Quer mesmo apagar este patrocinador?')) {
+                        window.location = col;
+                    }
+                }
+            </script>
+
+
+
+
+
+            <% include partials/footer %>

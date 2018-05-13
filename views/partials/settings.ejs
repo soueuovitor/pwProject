@@ -1,0 +1,95 @@
+
+<div class="modal fade" id="settings-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+    style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" align="center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+            </div>
+
+            <!-- Begin # DIV Form -->
+            <div id="div-forms">
+
+                <!-- Begin # Login Form -->
+                <% if (isAuthenticated) { %>
+
+
+
+                    <%   if (user.username === participante.username_part) {  %>
+
+                        <form id="change-form">
+
+                                <div class="modal-body">
+                                    <div>
+                                        
+
+
+                                            <div id="icon-change-msg" class="glyphicon glyphicon-chevron-right"></div>
+
+                                            <center>
+                                            
+                                                <span id="text-register-msg">Alterar Definições</span>
+                                            </center>
+                                            </div>
+                                            
+                 
+
+
+
+                                            <input id="change_nome" class="form-control" type="text" placeholder="Nome completo" name="name" value="<%= participante.nome_participante %>" pattern="[a-zA-ZÀ-ž\s]+" title="Apenas letras">
+                                            
+                                            <input id="change_telemovel" class="form-control" type="number" placeholder="Número Tel." name="numero" value="<%= participante.tel_participante %>">
+                                            
+                                            
+                                            
+                                            
+                                            <input id="id_change" class="form-control" type="hidden"  name="id_part"  value="<%= participante.id_participante %>">
+
+                                            
+                                           <input id="original_password" class="form-control" type="password" placeholder="Password" name="password" value="<%= participante.password_part %>">
+                                            
+                                            
+
+                                           <input id="password_change" class="form-control" type="password" placeholder="Nova Password" name="password_new" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Deve conter pelo menos um numero, uma letra maiuscula e uma minuscula e pelo menos 8 caracteres">
+
+                                           <input id="password_verify" class="form-control" type="password" placeholder="Verifique a password" name="password_vrified" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Deve conter pelo menos um numero, uma letra maiuscula e uma minuscula e pelo menos 8 caracteres">                                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                                </div>
+                              
+            
+                                <div class="modal-footer">
+                                    <div style="margin: auto;">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Submeter</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        <% } %>
+
+                            <% } %>
+                                <!-- End # Login Form -->
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,84 @@
+<div class="modal fade" id="comprar-bilhete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+    style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header" align="center">
+                <img class="img-circle" id="img_logo" src="public/img/aperture_science.png">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+            </div>
+            <!-- Begin # DIV Form -->
+            <div id="div-form-compra">
+
+
+                <!-- Begin | Register Form -->
+                <form id="modal-compra">
+
+                    <div class="modal-body">
+                        <div>
+                            <center>
+                                <span id="preco">Preço por bilhete :
+                            <span id="precoWork"> <%= workshop[0].preco %></span>€
+                        </span>
+                            </center>
+                            <div id="div-compra-msg" style="padding-bottom: 20px; padding-top: 0px">
+                                <center>
+                                    <span id="text-compra-msg">Escolha o dia: </span>
+                                </center>
+                            </div>
+                            <% if (isAuthenticated) { %>
+                                <input type="hidden" name="user" value="<%= user.username %>" <% } %>
+
+                                <div style="padding-bottom: 20px; padding-top: 0px" style="margin: auto">
+                                    <center>
+
+                                        <% for (var d of dias){ %>
+
+
+                                            <div class="pretty p-default p-curve p-fill">
+                                                <input type="radio" name="data" class="data" value="<%=  d.data.toLocaleDateString() %>" />
+                                                <div class="state">
+
+                                                    <label>
+                                                        <%=  d.data.toLocaleDateString()   %>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <%  } %>
+                                    </center>
+                                </div>
+                        </div>
+
+                    </div>
+                    <div style="padding-top: 30px">
+                        <center>
+                            <span>Quantos Bilhetes?</span>
+
+
+                            <input type="number" name="numero" id="totalBilhetes" style="width: 40px; display: block" value="1" min="0">
+                        </center>
+                    <center>
+                        <span id="precoTotal" style="padding-top:10px"></span>
+                    </center>   
+                    </div>
+
+                    <div class="modal-footer">
+                        <div style="margin: auto;">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Comprar</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Register Form -->
+
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- End # DIV Form                         start of alter table-->

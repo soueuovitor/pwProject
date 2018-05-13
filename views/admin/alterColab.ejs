@@ -1,0 +1,415 @@
+<body>
+
+        <% include partials/header %>
+    
+    
+    
+            <div id="page-wrapper">
+    
+    
+                <section id="header-main" class="row">
+                    <div class="col-md-12">
+    
+    
+                        <!-- DONUT CHART -->
+                        <div class="box box-sucess" style="height: auto; padding-bottom:10px">
+                            <div class="box-header">
+                                <h1 class="page-header" style="padding-bottom: 0px; margin: auto">Alterar Informação de
+                                    <i>
+                                        <%= colab.nome_colaborador %>
+                                    </i>
+                                </h1>
+                            </div>
+                        </div>
+    
+    
+    
+                    </div>
+    
+    
+                </section>
+    
+    
+    
+    
+    
+    
+    
+                <section class="content container-fluid">
+    
+    
+                    <div id="divContent" class="row">
+    
+                        <% if (colab.pago === 0) { %>
+    
+    
+                            <!-- edit form column -->
+                            <div class="col-md-9 personal-info" id="vol-div">
+                            <h3 style="display:inline-block; padding-right: 450px">Informação Pessoal</h3>
+                            <button type="button" class="btn btn-primary btn-sm " id="change-form-vol" style="display:inline-block; margin-right:auto ;" onclick="changeFormVol()">Voluntário</button>
+                            <form id="alter-vol" class="form-horizontal" role="form">
+                    
+                                <div id="div-register-msg">
+                                <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                    <span id="text-register-msg">Altere as credenciais</span>
+                                </div>
+    
+    
+                                
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Nome Completo:</label>
+                                        <div class="col-lg-8">
+                                            <input id="altervol_username" class="form-control" type="text" name="name" value="<%=colab.nome_colaborador%>" pattern="[a-zA-ZÀ-ž\s]+" title="Apenas letras" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Email:</label>
+                                        <div class="col-lg-8">
+                                            <input class="form-control" type="email" name="email" value="<%=colab.email_colaborador%>" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Insira um email válido" required />
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group"style="display: none;">
+                                        <label class="col-md-3 control-label">Username:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="text" name="username" value="<%= colab.username_col %>"  />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Número Telemóvel:</label>
+                                        <div class="col-md-8">
+                                            <input id="altervol_numero" class="form-control" type="number" name="numero" value="<%= colab.numero_colaborador %>" required
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Horário de trabalho:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="number" name="horario" value="<%= colab.horas_trabalho_diario %>" min="0" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Morada:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="text" name="morada" value="<%= colab.morada_colaborador %>" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Função:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="text" name="funcao" value="<%= colab.funcao %>" pattern="[a-zA-ZÀ-ž\s]+" title="Apenas letras" required />
+                                        </div>
+                                    </div>
+                                 
+    
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label"></label>
+                                        <div class="col-md-8">
+                                            <input type="submit" class="btn btn-primary" value="Guardar">
+                                            <span></span>
+                                            <input type="button" class="btn btn-default" value="reset" onclick="javascript:location.reload();">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            
+                            
+                            <div class="col-md-9 personal-info" id="pago-div" style="display: none">      
+                                        <h3 style="display:inline-block; padding-right: 450px">Informação Pessoal</h3>
+                                        <button type="button" id="change-form-vol" class="btn btn-primary btn-sm " style="display:inline-block; margin-right:auto ;" onclick="changeFormPago()">Pago</button>
+    
+                                    <form id="alter-pago" class="form-horizontal" role="form">
+                                    
+                                    <div id="div-register-msg">
+                                <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                    <span id="text-register-msg">Altere as credenciais</span>
+                                </div>
+                                
+                                
+                                    
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Nome Completo:</label>
+                                        <div class="col-lg-8">
+                                            <input id="register_name" class="form-control" type="text" name="name" value="<%=colab.nome_colaborador%>" pattern="[a-zA-ZÀ-ž\s]+" title="Apenas letras" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Email:</label>
+                                        <div class="col-lg-8">
+                                            <input class="form-control" id="register_email" type="email" name="email" value="<%= colab.email_colaborador %>" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Insira um email válido"  required />
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group" style="display: none;">
+                                        <label class="col-md-3 control-label">Username:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" id="register_username" type="text" name="username" value="<%= colab.username_col %>" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Número Telemóvel:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="number" name="numero" value="<%= colab.numero_colaborador %>" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Horário de trabalho:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="number" min="0" name="horario" value="<%= colab.horas_trabalho_diario %>" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Morada:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="text" name="morada" value="<%= colab.morada_colaborador %>" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Função:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="text" name="funcao" value="<%= colab.funcao %>" pattern="[a-zA-ZÀ-ž\s]+" title="Apenas letras" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">NIF:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control"  type="text" pattern="[0-9]{9}" title="NIF inválido" name="nif" value="<%= colab.nif_colaborador %>" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Salário:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="number" name="salario" value="<%= colab.salario_colab %>" />
+                                            
+                                        </div>
+                                    </div>
+                    
+    
+    
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label"></label>
+                                        <div class="col-md-8">
+                                            <input type="submit" class="btn btn-primary" value="Guardar">
+                                            <span></span>
+                                            <input type="button" class="btn btn-default" value="reset" onclick="javascript:location.reload();">
+                                        </div>
+                                    </div>
+    
+                                </form>
+                            </div>
+                            
+                            <% }else{ %>
+                            
+                            
+                             
+                            <div class="col-md-9 personal-info" id="vol-div" style="display:none">
+                                <h3 style="display:inline-block; padding-right: 450px">Informação Pessoal</h3>
+                                <button type="button" class="btn btn-primary btn-sm " id="change-form-vol" style="display:inline-block; margin-right:auto ;" onclick="changeFormVol()">Voluntário</button>
+                            <form id="alter-vol" class="form-horizontal" role="form">
+                    
+                                <div id="div-register-msg">
+                                    <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                    <span id="text-register-msg">Altere as credenciais</span>
+                                </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label">Nome Completo:</label>
+                                            <div class="col-lg-8">
+                                                <input  id="altervol_username" class="form-control" type="text" name="name" value="<%=colab.nome_colaborador%>" pattern="[a-zA-ZÀ-ž\s]+" title="Apenas letras" required />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label">Email:</label>
+                                            <div class="col-lg-8">
+                                                <input class="form-control" type="text" name="email" value="<%= colab.email_colaborador %>" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Insira um email válido" required />
+                                            </div>
+                                        </div>
+    
+                                        <div class="form-group">
+    
+                                            <label class="col-md-3 control-label">Número Telemóvel:</label>
+                                            <div class="col-md-8">
+                                                <input  id="altervol_numero"class="form-control" type="text" name="numero" value="<%= colab.numero_colaborador %>" required />
+                                                <input class="form-control" type="hidden" name="username" value="<%= colab.username_col %>" />
+    
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Horário de trabalho:</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" type="text" name="horario" value="<%= colab.horas_trabalho_diario %>" required />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Morada:</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" type="text" name="morada" value="<%= colab.morada_colaborador %>" required />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Função:</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" type="text" name="funcao" value="<%= colab.funcao %>" pattern="[a-zA-ZÀ-ž\s]+" title="Apenas letras" required />
+                                            </div>
+                                        </div>
+                              
+            
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label"></label>
+                                            <div class="col-md-8">
+                                                <input type="submit" class="btn btn-primary" value="Guardar">
+                                                <span></span>
+                                                <input type="button" class="btn btn-default" value="reset" onclick="javascript:location.reload();">
+                                            </div>
+                                        </div>
+    
+                                    </form>
+                                </div>
+                                
+                                
+    
+    
+                                <div class="col-md-9 personal-info" id="pago-div" >      
+                                        <h3 style="display:inline-block; padding-right: 450px">Informação Pessoal</h3>
+                                        <button type="button" id="change-form-vol" class="btn btn-primary btn-sm " style="display:inline-block; margin-right:auto ;" onclick="changeFormPago()">Pago</button>
+    
+                                    <form id="alter-pago" class="form-horizontal" role="form">
+                                    
+                                    <div id="div-register-msg">
+                                <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                    <span id="text-register-msg">Altere as credenciais</span>
+                                </div>
+                                
+                                
+                                    
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Nome Completo:</label>
+                                        <div class="col-lg-8">
+                                            <input id="register_name" class="form-control" type="text" name="name" value=" <%= colab.nome_colaborador%>" pattern="[a-zA-ZÀ-ž\s]+" title="Apenas letras" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Email:</label>
+                                        <div class="col-lg-8">
+                                            <input class="form-control" id="register_email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Insira um email válido" value="<%= colab.email_colaborador %>" required />
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group" style="display: none;">
+                                        <label class="col-md-3 control-label">Username:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" id="register_username" type="text" name="username" value="<%= colab.username_col %>" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Número Telemóvel:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="number" name="numero" value="<%= colab.numero_colaborador %>" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Horário de trabalho:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="number" min="0" name="horario" value="<%= colab.horas_trabalho_diario %>" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Morada:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="text" name="morada" value="<%= colab.morada_colaborador %>" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Função:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="text" name="funcao" value="<%= colab.funcao %>" pattern="[a-zA-ZÀ-ž\s]+" title="Apenas letras" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group"style="display: none;">
+                                        <label class="col-md-3 control-label">NIF:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="text" pattern="[0-9]{9}" title="NIF inválido" min="0" name="nif" value="<%= colab.nif_colaborador %>" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Salário:</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="number" name="salario" value="<%= colab.salario_colab %>" />
+                                            
+                                        </div>
+                                    </div>
+                    
+    
+    
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label"></label>
+                                        <div class="col-md-8">
+                                            <input type="submit" class="btn btn-primary" value="Guardar">
+                                            <span></span>
+                                            <input type="button" class="btn btn-default" value="reset" onclick="javascript:location.reload();">
+                                        </div>
+                                    </div>
+    
+                                </form>
+                            </div>
+                                <% } %>
+                    </div>
+    
+                </section>
+    
+            </div>
+    
+    
+    
+            
+            <!-- /#page-wrapper -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+            <% include partials/footer %>

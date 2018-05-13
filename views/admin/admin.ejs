@@ -1,0 +1,601 @@
+<% include partials/header %>
+
+
+
+
+
+    <div id="page-wrapper">
+
+        <section id="header-main" class="row">
+            <div class="col-md-12">
+
+
+                <!-- DONUT CHART -->
+                <div class="box box-sucess" style="height: auto; padding-bottom:10px">
+                    <div class="box-header">
+                        <h1 class="page-header" style="padding-bottom: 0px; margin: auto">Overview
+                            <small>Informações Principais do Workshop</small>
+                        </h1>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+        </section>
+
+
+
+
+        <div id="divContent" class="row">
+
+            <div class="col-md-6">
+
+
+                <!-- DONUT CHART -->
+                <div class="box box-danger" style="height: 350px">
+                    <div class="box-header">
+                        <h3 class="box-title">Lucro do Workshop</h3>
+
+                        <div class="box-tools pull-right">
+
+                        </div>
+                    </div>
+                    <div id="donut-lucro" style="height: 85%; width: 99%"></div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+
+
+
+            <!-- /.box -->
+            <div class="col-md-6">
+
+
+                <!-- DONUT CHART -->
+                <div class="box box-danger" style="height: 350px">
+                    <div class="box-header">
+                        <h3 class="box-title">Bilhetes Vendidos Por Dia</h3>
+
+                        <div class="box-tools pull-right">
+
+                        </div>
+                    </div>
+                    <div id="bars-bilhetes" style="height: 85%; width: 99%"></div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+
+
+            <div class="col-md-6">
+
+
+                <!-- DONUT CHART -->
+                <div class="box box-danger" style="height: 350px">
+                    <div class="box-header">
+                        <h3 class="box-title">Colaboradores Contratados</h3>
+
+
+                    </div>
+                    <div id="bars-participantes" style="height: 85%; width: 99%"></div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+
+
+
+
+
+
+            <div class="col-md-6">
+
+
+                <!-- DONUT CHART -->
+                <div class="box box-danger" style="height: 350px">
+                    <div class="box-header">
+                        <h3 class="box-title">Participantes Por Sessão</h3>
+
+
+                    </div>
+                    <div id="participantes-sessao" style="height: 85%; width: 99%"></div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+
+
+
+            <div class="col-md-6" style="height: 350px">
+                <div class="box box-danger">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">
+                            Informações Variadas
+                        </h3>
+
+
+                    </div>
+
+                    <p class="box-p" id="email">Total Bilhetes Vendidos:
+                        <%= numBilhetes.length %>
+                    </p>
+                    <p class="box-p" id="email-volo">Dinheiro Auferido Com Venda Bilhetes:
+                    </p>
+                    <p class="box-p">Numero Total De Participantes:
+                        <%= numParticipantes.length %>
+
+                    </p>
+                    <p class="box-p">Numero Total De Colaboradores:
+                        <%= colaboradores.length %>
+
+                    </p>
+                    <p class="box-p">Numero Total De Speakers:
+                        <%= speakers.length %>
+
+                    </p>
+                    <p class="box-p">Numero Total De Patrocinadores:
+                        <%= patrocinadores.length %>
+
+                    </p>
+
+
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+
+
+        </div>
+
+
+
+
+        <script>
+            var dinheiroBilhetes = 0;
+            var dinheiroColab = 0;
+            var dinheiroSpeakers = 0;
+            var numeroBilhetes = <%= numBilhetes.length %>;
+            var precoBilhete = <%= workshop[0].preco %>;
+            var dinheiroPatrocinios = 0;
+            var dinheiroTotalColab = 0;
+            var lucro = 0;
+            var gasto = 0;
+            var total = 0;
+
+
+            function colabPagos() {
+                var numTotal = 0;
+                <% for (var c of colaboradores){ %>
+
+
+
+                <%   if (c.pago ==  1 && c.deleted ==  0){ %>
+                numTotal++;
+
+                <%   }%>
+
+
+                <%     } %>
+                return numTotal;
+
+            }
+
+            function numSpeakers() {
+                var numTotal = 0;
+                <% for (var s of speakers){ %>
+                <% if ( s.deleted == 0) { %>
+
+                numTotal++;
+
+
+
+                <%  } %>
+                <%  } %>
+                return numTotal;
+
+            }
+
+            function numPatrocinadores() {
+                var numTotal = 0;
+                <% for (var s of patrocinadores){ %>
+                <% if ( s.deleted == 0) { %>
+
+                numTotal++;
+
+
+
+                <%     } %>
+                <%     } %>
+                return numTotal;
+
+            }
+
+
+            function colabVoluntarios() {
+                var numTotal = 0;
+                <% for (var c of colaboradores){ %>
+
+                <%   if (c.pago ==  0 && c.deleted == 0 ){ %>
+                numTotal++;
+
+                <%   }%>
+
+
+                <%     } %>
+                return numTotal;
+
+            }
+
+            function totalDinheiroColab() {
+
+                dinheiroColab = 0;
+
+                <% for (var r of  colaboradores) { %>
+                <% if (r.deleted == 0) { %>
+                dinheiroColab = dinheiroColab + <%= r.salario_colab %>
+
+
+
+
+
+
+                <%  } %>
+
+                <%  } %>
+
+
+
+                return dinheiroColab;
+            }
+
+            function totalDinheiroSpeakers() {
+
+                dinheiroSpeakers = 0;
+                <%for (var w of sessoes) { %>
+                <% for (var r of  speakers) { %>
+                <% if (w.speaker_sessao === r.nome_speaker && r.deleted == 0) { %>
+
+
+                dinheiroSpeakers = dinheiroSpeakers + <%= r.cache_speaker %>
+
+
+                <%  } %>
+
+
+
+                <%  } %>
+
+                <%  } %>
+
+                return dinheiroSpeakers;
+            }
+
+
+            function lucroWork() {
+                if (gastoTotal() > receitaTotal()) {
+                    var e = gastoTotal() - receitaTotal();
+                    return "Prejuízo Total de " + e + " €";
+                } else {
+                    var e = receitaTotal() - gastoTotal();
+                    return "Lucro Total de " + e + " €";
+                }
+            }
+
+
+
+
+            function totalDinheiroPatrocinadores() {
+
+
+                dinheiroPatrocinios = 0;
+                <% for (var r of  patrocinadores) { %>
+                <% if (r.deleted == 0) { %>
+
+                dinheiroPatrocinios = dinheiroPatrocinios + <%= r.valor_doado %>;
+
+
+                <%  } %>
+                <%  } %>
+
+
+
+
+                return dinheiroPatrocinios;
+            }
+
+            function gastoTotal() {
+
+                gasto = totalDinheiroColab() + totalDinheiroSpeakers();
+                return gasto;
+            }
+
+
+            function receitaTotal() {
+
+                lucro = totalDinheiroPatrocinadores() + dinheiro();
+
+
+
+
+                return lucro;
+
+            }
+
+
+
+
+
+            function dinheiro() {
+
+                dinheiroBilhetes = numeroBilhetes * precoBilhete;
+                $('#email-volo').text("Dinheiro Auferido Com a a Venda De Bilhetes: " + dinheiroBilhetes);
+                return dinheiroBilhetes;
+
+            }
+
+            function start() {
+                lucro();
+                bilhetes();
+                receitaTotal();
+                totalDinheiroPatrocinadores()
+                dinheiro();
+                bilhetes2();
+                bilhetesSessoes();
+
+            }
+            window.onload = start;
+
+            function bilheteNumber(a, b) {
+                if (a === b) {
+
+                    return true;
+
+
+                } else {
+
+
+
+                    return false;
+
+
+                }
+
+            }
+
+
+
+            function bilhetes() {
+
+
+
+
+                var chart = new CanvasJS.Chart("bars-bilhetes", {
+                    animationEnabled: true,
+                    theme: "light1", // "light1", "light2", "dark1", "dark2"
+                    axisX: {
+                        labelFontSize: 16,
+                    },
+                    data: [{
+                        yValueFormatString: "##0\" Bilhetes\"",
+                        type: "column",
+
+                        dataPoints: [
+
+
+
+
+
+
+
+                            <% for (var e of numDias) { %>
+
+
+                            {
+
+
+
+
+
+
+
+
+
+                                label: "<%= e.data.toLocaleDateString() %>",
+                                y: contarBilhetes('<%= e.data.toLocaleDateString() %>'),
+                                color: "#F44336",
+
+
+                            },
+
+
+                            <% } %>
+
+
+
+                        ],
+
+                    }]
+
+                });
+                chart.render();
+
+            }
+
+
+
+
+
+
+
+
+
+
+            function bilhetesSessoes() {
+
+
+
+
+                var chart = new CanvasJS.Chart("participantes-sessao", {
+                    animationEnabled: true,
+                    theme: "light1", // "light1", "light2", "dark1", "dark2"
+
+                    axisX: {
+                        labelFontSize: 16,
+
+                    },
+                    data: [{
+                        yValueFormatString: "##0\" Bilhetes\"",
+                        type: "column",
+
+                        dataPoints: [
+
+
+
+
+
+
+
+                            <% for (var e of sessoes) { %>
+
+
+                            {
+
+
+
+
+
+
+
+
+
+                                label: "<%= e.titulo_sessao %>",
+                                y: contarBilhetesSessao('<%= e.data_sessao.toLocaleDateString() %>'),
+                                color: "#2196F3",
+
+
+                            },
+
+
+                            <% } %>
+
+
+
+                        ],
+
+                    }]
+
+                });
+                chart.render();
+
+            }
+
+
+
+
+            function contarBilhetes(c) {
+                var total = 0;
+                <% for (var e of numBilhetes){ %>
+
+                if ("<%= e.data_bilhete.toLocaleDateString() %>" === c) {
+
+                    total++;
+                }
+                <% } %>
+                return total;
+
+
+            }
+
+
+            function contarBilhetesSessao(c) {
+                var total = 0;
+                <% for (var e of numBilhetes){ %>
+
+                if ("<%= e.data_bilhete.toLocaleDateString() %>" === c) {
+
+                    total++;
+                }
+                <% } %>
+                return total;
+
+
+            }
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <% include partials/footer %>

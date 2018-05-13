@@ -1,0 +1,122 @@
+    <% include partials/header %>
+
+
+
+
+
+
+        <div id="page-wrapper">
+
+            <section id="header-main" class="row">
+                <div class="col-md-12">
+
+
+                    <!-- DONUT CHART -->
+                    <div class="box box-sucess" style="height: auto; padding-bottom:10px">
+                        <div class="box-header">
+                            <h1 class="page-header" style="padding-bottom: 0px; margin: auto">Feedback
+                                <small>Aqui pode responder a emails submetidos no site</small>
+                            
+                            </h1>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+            </section>
+
+            <div id="speakersListView" class="row">
+                <div class="col-md-12">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+							<th class="feed_hora">Data Envio</th>
+                            <th class="feed_nome">Nome</th>
+                            <th class="feed_email">Email</th>
+                            <th class="feed_mensagem">Mensagem</th>
+							<th class="feed_res"</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (var e of feedback) { %>
+                               
+
+                                    <tr>
+										<td class="feed_hora">
+										<%= e.hora_envio.toLocaleDateString() %> <%= e.hora_envio.toLocaleTimeString() %>
+										</td>
+                                        <td class="feed_nome">
+                                           <%= e.nome_pessoal %>
+                                        </td>
+
+                                        <td class="feed_email">
+                                           <%=  e.email_pessoal %>
+                                        </td>
+										<td class="feed_mensagem">
+										<%=  e.mensagem %>
+										</td>
+										<td>
+										<a href="#" class="nav-link js-scroll-trigger" onclick="modalChange('<%= e.email_pessoal %>')" role="button" data-toggle="modal" data-target="#resposta-modal">
+                                            <button class="icon-button">
+                                            <i class="fa fa-reply" aria-hidden="true"></i>
+                                            </button>
+										</td>
+									</tr>
+                                   
+                                        <%} %>
+                    </tbody>
+                </table>
+
+<script>
+    
+    function modalChange(email) {
+        
+        $('#resposta_email').val(email)
+        
+         $('#text-register-msg').text(email)
+        
+        
+    }
+    
+    
+    
+    
+    
+</script>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <!-- /#page-wrapper -->
+
+        <!-- /#wrapper -->
+
+        </div>
+
+
+
+
+	<% include partials/resposta %>
+        <% include partials/footer %>

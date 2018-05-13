@@ -1,0 +1,42 @@
+<div class="modal fade" id="speaker-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+        
+
+            <!-- Begin # DIV Form -->
+            <div id="div-forms">
+
+
+                <!-- Begin | Register Form -->
+                <form id="register-speaker">
+
+                    <div class="modal-body">
+
+                        <div id="div-register-msg">
+                            <center>
+                                <span id="text-register-msg">Criar Speaker</span>
+                            </center>
+                        </div>
+                        <input type="file" name="speaker">
+                        <input id="register_name" class="form-control" type="text" name="name" placeholder="Nome completo" pattern="[a-zA-ZÀ-ž\s]+" title="Apenas letras" required>
+                        <input id="register_morada" class="form-control" type="text" name="morada" placeholder="Morada" required>
+                        <input id="register_email" class="form-control" type="email" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Insira um email válido" required>
+						<input id="register_numero" class="form-control" type="number" name="numero" placeholder="Telemóvel" required>
+                        <input id="register_salario" class="form-control" type="number" name="cache" placeholder="Salário" min="0" required>
+                        <input id="register_introducao" class="form-control" type="text" name="introducao" placeholder="Introdução" required>
+
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Registar</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Register Form -->
+               
+            </div>
+            <!-- End # DIV Form -->
+		</div>
+	</div>
+</div>

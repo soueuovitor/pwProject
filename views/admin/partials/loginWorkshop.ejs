@@ -1,0 +1,225 @@
+<div class="modal fade" id="dia-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+
+
+            <!-- Begin # DIV Form -->
+            <div id="div-forms">
+
+
+                <!-- Begin | Register Form -->
+                <form id="register-dia" method="post" enctype="multipart/form-data">
+
+                    <div class="modal-body">
+
+                        <div id="div-register-msg">
+                            <center>
+                                <span id="text-register-msg">Adicionar Dia</span>
+                            </center>
+                        </div>
+
+                        <center>
+                            <input id="novodia" class="form-control" type="date" name="novoDia">
+                        </center>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Registar</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Register Form -->
+
+            </div>
+            <!-- End # DIV Form -->
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="nome-workshop-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+
+
+            <!-- Begin # DIV Form -->
+            <div id="div-forms">
+
+
+                <!-- Begin | Register Form -->
+                <form id="workshop-nome" method="post" enctype="multipart/form-data">
+
+                    <div class="modal-body">
+
+                        <div id="div-register-msg">
+                            <center>
+                                <span id="text-register-msg">Alterar Nome do Workshop</span>
+                            </center>
+                        </div>
+
+                        <center>
+                            <input id="nome_workshop" class="form-control" type="text" name="nomeWorkshop" value="<%= workshop[0].nome_workshop %>">
+                        </center>
+
+                        <input id="id_workshop" class="form-control" type="hidden" name="idWorkshop" value="<%= workshop[0].id_workshop %>">
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Registar</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Register Form -->
+
+            </div>
+            <!-- End # DIV Form -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="modal fade" id="preco-workshop-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+
+
+            <!-- Begin # DIV Form -->
+            <div id="div-forms">
+
+
+                <!-- Begin | Register Form -->
+                <form id="workshop-preco" method="post" enctype="multipart/form-data">
+
+                    <div class="modal-body">
+
+                        <div id="div-register-msg">
+                            <center>
+                                <span id="text-register-msg">Alterar Preço Diário</span>
+                            </center>
+                        </div>
+
+                        <center>
+                            <input id="preco_workshop" class="form-control" type="number" name="precoWorkshop" value="<%= workshop[0].preco %>">
+                        </center>
+
+                        <input id="id_workshop2" class="form-control" type="hidden" name="idWorkshop" value="<%= workshop[0].id_workshop %>">
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Registar</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Register Form -->
+
+            </div>
+            <!-- End # DIV Form -->
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="salario-colab-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+
+
+            <!-- Begin # DIV Form -->
+            <div id="div-forms">
+
+
+                <!-- Begin | Register Form -->
+                <form id="workshop-salario" method="post" enctype="multipart/form-data">
+
+                    <div class="modal-body">
+
+                        <div id="div-register-msg">
+                            <center>
+                                <span id="text-register-msg">Alterar Salário Predefinido</span>
+                            </center>
+                        </div>
+
+                        <center>
+                            <input id="salario_pred" class="form-control" type="number" name="salarioWorkshop" min="0" value="<%= workshop[0].salario_predefinido %>">
+                        </center>
+                        <input id="id_workshop3" class="form-control" type="hidden" name="idWorkshop" value="<%= workshop[0].id_workshop %>">
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Registar</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Register Form -->
+
+            </div>
+            <!-- End # DIV Form -->
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="max-bilhetes-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+
+
+            <!-- Begin # DIV Form -->
+            <div id="div-forms">
+
+
+                <!-- Begin | Register Form -->
+                <form id="workshop-ocupacao" method="post" enctype="multipart/form-data">
+
+                    <div class="modal-body">
+
+                        <div id="div-register-msg">
+                            <center>
+                                <span id="text-register-msg">Alterar Ocupação Máxima Diária</span>
+                            </center>
+                        </div>
+
+                        <center>
+                            <input id="max-bilhetes" class="form-control" type="number" name="ocupacaoWorkshop" min="0" value="<%= workshop[0].max_bilhetes_dia %>">
+                        </center>
+                        <input id="id_workshop4" class="form-control" type="hidden" name="idWorkshop" value="<%= workshop[0].id_workshop %>">
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Registar</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Register Form -->
+
+            </div>
+            <!-- End # DIV Form -->
+        </div>
+    </div>
+
+</div>

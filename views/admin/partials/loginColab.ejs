@@ -1,0 +1,109 @@
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header" align="center">
+
+
+                <div id="toggle-div">
+                    <style>
+                        .toggle.ios,
+                        .toggle-on.ios,
+                        .toggle-off.ios {
+                            border-radius: 5px;
+                        }
+
+                        .toggle.ios .toggle-handle {
+                            border-radius: 5px;
+                        }
+                    </style>
+                    <center>
+                        <input id="toggle-me" type="checkbox" checked data-toggle="toggle" data-on="Voluntário" data-off="Pago" data-onstyle="info"
+                            data-offstyle="danger" data-width="150" ;>
+                    </center>
+                </div>
+
+            </div>
+
+            <!-- Begin # DIV Form -->
+            <div id="div-forms">
+
+
+                <!-- Begin | Register Form -->
+                <form id="register-vol">
+
+                    <div class="modal-body">
+
+                        <div id="div-voluntario-msg">
+                            <center>
+                                <span id="text-voluntario-msg">Criar Colaborador</span>
+                            </center>
+                        </div>
+                        <input type="file" name="colab">
+						<br>
+                        <label class="container">Admin
+						<input type="checkbox" name="admin" value="admin">
+						<span class="checkmark"></span>
+						</label>
+                        <input id="register_username" class="form-control" type="text" placeholder="Username" name="username" pattern="[a-zA-Z0-9À-ž\s]{3,20}$" title="Entre 3 a 20 caracteres,apenas letras e números" required>
+                        <input id="register_email" class="form-control" type="email" placeholder="E-Mail" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Insira um email válido" required>
+                        <input id="register_password" class="form-control" type="password" placeholder="Password" name="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Deve conter pelo menos um numero, uma letra maiuscula e uma minuscula e pelo menos 8 caracteres" required>
+                        <input id="register_name_normal" class="form-control" type="text" placeholder="Nome completo" name="name" pattern="[a-zA-ZÀ-ž\s]+" title="Apenas letras" required>
+                        <input id="register_phonenumber" class="form-control" type="number" placeholder="Numero telemóvel" name="numero" required>
+                        <input id="register_horario" class="form-control" type="number" placeholder="Horas Trabalho Diário" name="horario"  min="0" required>
+                        <input id="register_morada" class="form-control" type="text" placeholder="Morada" name="morada" required>
+                        <input id="funcao" class="form-control" type="text" placeholder="Função" name="funcao" pattern="[a-zA-ZÀ-ž\s]+" title="Apenas letras" required>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Registar</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Register Form -->
+                <form id="registar-pago" style="display:none;">
+                    <div class="modal-body">
+                        <div id="div-register-msg">
+                            <center>
+                                <span id="text-register-msg">Criar Colaborador Pago</span>
+                            </center>
+                        </div>
+						<input type="file" name="colabPago" />
+						<br>
+						<label class="container">Admin
+						<input type="checkbox" name="admin" value="admin">
+						<span class="checkmark"></span>
+						</label>
+						<input id="register_pago_username" class="form-control" type="text" placeholder="Username" name="username" pattern="[a-zA-Z0-9À-ž\s]{3,20}$" title="Entre 3 a 20 caracteres,apenas letras e números" required>
+                        <input id="register_pago_email" class="form-control" type="email" placeholder="E-Mail" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Insira um email válido" required>
+                        <input id="register_pago_password" class="form-control" type="password" placeholder="Password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Deve conter pelo menos um numero, uma letra maiuscula e uma minuscula e pelo menos 8 caracteres" required>
+                        <input id="register_name_pago_normal" class="form-control" type="text" placeholder="Nome completo" name="name" pattern="[a-zA-ZÀ-ž\s]+" title="Apenas letras" required>
+                        <input id="register_pago_numero" class="form-control" type="number" placeholder="Numero telemóvel" name="numero" required>
+                        <input id="register_pago_horario" class="form-control" type="number" placeholder="Horas Trabalho Diário" name="horario" min="0" required>
+                        <input id="register_pago_morada" class="form-control" type="text" placeholder="Morada" name="morada" required>
+                        <input id="funcao" class="form-control" type="text" placeholder="Função" name="funcao" pattern="[a-zA-ZÀ-ž\s]+" title="Apenas letras" required>
+                        
+                        <input id="salario_pago_colab" class="form-control" type="number" placeholder="Salario - Deixar em Branco para o salário predefinido" name="salario"  >
+                        <input id="salario-predefinido" class="form-control" type="hidden" value="<%= workshop[0].salario_predefinido %>" name="salarioPredefinido"  >
+
+                        <input id="colab_pago_nif" class="form-control" type="text" placeholder="NIF" name="nif"  pattern="[0-9]{9}" title="NIF inválido" maxlength="9" required>
+                       
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Registar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+
+</div>
+<!-- End # DIV Form                         start of alter table-->
